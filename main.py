@@ -1,4 +1,4 @@
-from lectorcsv import *
+import menu
 
 if __name__ == "__main__":
-    leer_csv()
+    menu()

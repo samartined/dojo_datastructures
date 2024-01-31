@@ -13,5 +13,3 @@ def leer_csv():
             }
             for estudiante in lector_csv
         ]
-    for estudiante in dict_comprehension_estudiantes:
-        print((estudiante))
