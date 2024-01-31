@@ -1,7 +1,21 @@
 import csv
 
+
 def main():
-    with open('data.csv', 'r') as file:
-        reader = csv.reader(file)
-        for row in reader:
-            print(row)
+    with open("data.csv", "r") as archivo_csv_estudiantes:
+        lector_csv = csv.reader(archivo_csv_estudiantes)
+        encabezado_archivo = next(lector_csv)
+
+        dict_comprehension_estudiantes = [
+            {
+                encabezado_archivo[indice]: estudiante[indice]
+                for indice in range(len(encabezado_archivo))
+            }
+            for estudiante in lector_csv
+        ]
+    for estudiante in dict_comprehension_estudiantes:
+        print((estudiante))
+
+
+if __name__ == "__main__":
+    main()
