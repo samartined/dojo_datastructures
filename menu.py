@@ -15,24 +15,81 @@ def leer_csv():
             }
             for estudiante in lector_csv
         ]
+        return dict_comprehension_estudiantes
 
 
 while True:
-    print("1. Obtener todos los estudiantes por ciudad")
-
-    print("2. Mostrar datos")
+    estudiantes = leer_csv()
+    print("1. Filtrar")
+    print("2. Obtener ciudades de residencia de todos los estudiantes")
     print("3. Salir")
-    opción = input("Ingrese una opción: ")
-    if opción == "1":
-        leer_csv()
-        print("\nIntroduzca la ciudad: ")
-        ciudad = input()
+    opcion_menu_principal = input("Ingrese una opción: ")
 
-    elif opción == "2":
-        mostrar_datos()
-    elif opción == "3":
-        leer_csv().close()
+    if opcion_menu_principal == "1":
+        while True:
+            print("\n1. Filtrar por ciudad")
+            print("2. Filtrar por país")
+            print("3. Filtrar por rango de edad")
+            print("4. Volver al menú principal\n")
+            opcion_menu_filtrado = input("Ingrese una opción: ")
+
+            if opcion_menu_filtrado == "1":
+                ciudad_filtrada = input("Introduzca la ciudad: ").capitalize()
+
+                estudiantes_filtrados = [
+                    estudiante
+                    for estudiante in estudiantes
+                    if estudiante["ciudad"] == ciudad_filtrada
+                ]
+                print(estudiantes_filtrados)
+                print("\n")
+
+            elif opcion_menu_filtrado == "2":
+                pais_filtrado = input("Introduzca el país: ").capitalize()
+
+                estudiantes_filtrados = [
+                    estudiante
+                    for estudiante in estudiantes
+                    if estudiante["pais"] == pais_filtrado
+                ]
+                print(estudiantes_filtrados)
+                print("\n")
+
+            elif opcion_menu_filtrado == "3":
+                edad_minima = int(input("Introduzca la edad mínima: "))
+                edad_maxima = int(input("Introduzca la edad máxima: "))
+
+                estudiantes_filtrados = [
+                    estudiante
+                    for estudiante in estudiantes
+                    if estudiante["edad"]
+                    <= edad_maxima & estudiante["edad"]
+                    >= edad_minima
+                ]
+                print(estudiantes_filtrados)
+                print("\n")
+
+            elif opcion_menu_filtrado == 4:
+                break
+
+    elif opcion_menu_principal == "2":
+        # with open("data.csv", "r") as archivo_csv_estudiantes:
+        #     lector_csv = csv.reader(archivo_csv_estudiantes)
+
+        # encabezado_archivo = next(lector_csv)
+
+        # dict_comprehension_estudiantes = [
+        #     {
+        #         encabezado_archivo[indice]: estudiante[indice]
+        #         for indice in range(len(encabezado_archivo))
+        #     }
+        #     for estudiante in lector_csv
+        # ]
+
+        for ciudad in set(estudiante["ciudad"] for estudiante in estudiantes):
+            print(ciudad)
+
+    elif opcion_menu_principal == "3":
         break
     else:
         print("Opción inválida")
-    print()
