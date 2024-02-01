@@ -62,15 +62,17 @@ while True:
                 estudiantes_filtrados = [
                     estudiante
                     for estudiante in estudiantes
-                    if estudiante["edad"]
-                    <= edad_maxima & estudiante["edad"]
-                    >= edad_minima
+                    if int(estudiante["edad"]) <= edad_maxima
+                    and int(estudiante["edad"]) >= edad_minima
                 ]
                 print(estudiantes_filtrados)
                 print("\n")
 
-            elif opcion_menu_filtrado == 4:
+            elif opcion_menu_filtrado == "4":
                 break
+            
+            else:
+                print("Opción inválida")
 
     elif opcion_menu_principal == "2":
         # with open("data.csv", "r") as archivo_csv_estudiantes:
@@ -91,5 +93,6 @@ while True:
 
     elif opcion_menu_principal == "3":
         break
+    
     else:
         print("Opción inválida")
